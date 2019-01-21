@@ -1,13 +1,13 @@
 # Development template - Docker/WordPress
 
-This repository contains a set of starter files for developing a WordPress website locally with Docker. The `/docker/docker-compose.yml` file is designed to run an existing WordPress website locally for development purposes. It creates 2 containers - 
+This repository contains a set of starter files for developing a WordPress website locally with Docker. The `docker/docker-compose.yml` file is designed to run an existing production WordPress instance locally. It creates 2 containers - 
 
 * `wordpress` - for the website files.
 * `db` - for the associated MySQL database.
 
 The `wordpress` container has 3 volumes - 
 
-1. The `site/wp-content` folder - Take this from the production instance. It's used for all customisations outside of the core WordPress code. This includes the themes, plugins, uploads etc.
+1. The `site/wp-content` folder - Copy this from the production instance. It's used for all customisations outside of the core WordPress code. This includes the themes, plugins, uploads etc.
 2. `docker/setup/chown-wp-content.sh` - Makes the `wp-content` folder the same owner/group as the rest of the site. This has to be run manually within the container currently.
 3. `docker/setup/disable-plugins.sh` - You can disable certain plugins that are not needed for development, e.g. security or SEO plugins. The plugin folder name(s) is inserted directly in to the bash script. This has to be run manually withint the container currently. 
 
@@ -23,7 +23,7 @@ Once the containers are running, get the name of the WordPress container:
 
 `$ docker ps`
 
-This will list the Wordpress container, copy the name, then run:
+This will list the WordPress container, copy the name, then run:
 
 `$ docker exec -it {paste_name_here} bash` 
 
