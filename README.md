@@ -1,6 +1,8 @@
 # Development template - Docker/WordPress
 
-This repository contains a set of starter files for developing a WordPress website locally with Docker. The `docker/docker-compose.yml` file is designed to run an existing production WordPress instance locally. It creates 2 containers - 
+Creates a development environment for an existing WordPress site using Docker.
+
+The `docker/docker-compose.yml` file is designed to run an existing production WordPress instance locally. It creates 2 containers - 
 
 * `wordpress` - for the website files.
 * `db` - for the associated MySQL database.
