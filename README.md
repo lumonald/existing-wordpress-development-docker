@@ -8,7 +8,9 @@ This repository contains a set of starter files for developing a WordPress websi
 The `wordpress` container has 3 volumes - 
 
 1. The `site/wp-content` folder - Copy this from the production instance. It's used for all customisations outside of the core WordPress code. This includes the themes, plugins, uploads etc.
+
 2. `docker/setup/chown-wp-content.sh` - Makes the `wp-content` folder the same owner/group as the rest of the site. This has to be run manually within the container currently.
+
 3. `docker/setup/disable-plugins.sh` - You can disable certain plugins that are not needed for development, e.g. security or SEO plugins. The plugin folder name(s) is inserted directly in to the bash script. This has to be run manually withint the container currently. 
 
 **Note:** The `wp-config.php` file gets auto generated for this local WordPress instance.
