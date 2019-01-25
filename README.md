@@ -33,7 +33,7 @@ The `db` container has 3 volumes -
 
 3. Edit `migrate/migrate.sql` and change the table prefix in the queries to match your database. Also change `http://yourdomain.com` to be your production domain. This will get changed to be localhost instead.
 
-4. If you want to disable plugins, edit `migrate/migrate.sql` and add folder names to the `plugins` variable, otherwise skip this step.
+4. If you want to disable plugins, edit `setup/disable-plugins.sh` and add folder names to the `plugins` variable, otherwise skip this step.
 
 5. Navigate to the `docker` folder within the project and run:
 
