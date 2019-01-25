@@ -47,8 +47,8 @@ The website will then be accessible in a browser at localhost.
 
 If you want to disable plugins, run:
 
-`disable-plugins.sh`
+`$ disable-plugins.sh`
 
 Then after run:
 
-`chown-wp-content.sh`
+`$ chown-wp-content.sh`
