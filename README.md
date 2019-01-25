@@ -7,30 +7,15 @@ The `docker/docker-compose.yml` file is designed to run an existing production W
 * `wordpress` - for the website files.
 * `db` - for the associated MySQL database.
 
-The `wordpress` container has 2 volumes - 
+The `wordpress` container has 3 volumes - 
 
 1. The `site/wp-content` folder - Copy this from the production instance. It's used for all customisations outside of the core WordPress code. This includes the themes, plugins, uploads etc.
 
-2. `docker/setup` - 
-    * `chown-wp-content.sh` - Makes the `wp-content` folder the same owner/group as the rest of the site. This has to be run manually within the container currently.
-    
-    * `disable-plugins.sh` - You can disable certain plugins that are not needed for development, e.g. security or SEO plugins. The plugin folder name(s) is inserted directly in to the bash script. This has to be run manually withint the container currently. 
-
 **Note:** The `wp-config.php` file gets auto generated for this local WordPress instance.
 
-**Note:** To get in to the `wordpress` container shell to run the bash scripts, you can do the following:
-
-Navigate to `/docker` within project folder and run:
-
-`$ docker-compose up`
-
-Once the containers are running, get the name of the WordPress container:
-
-`$ docker ps`
-
-This will list the WordPress container, copy the name, then run:
-
-`$ docker exec -it {paste_name_here} bash` 
+2. `docker/setup/chown-wp-content.sh` - Makes the `wp-content` folder the same owner/group as the rest of the site. This has to be run manually within the container currently.
+    
+3. `docker/setup/disable-plugins.sh` - You can disable certain plugins that are not needed for development, e.g. security or SEO plugins. The plugin folder name(s) is inserted directly in to the bash script. This has to be run manually withint the container currently. 
 
 The `db` container has 3 volumes - 
 
@@ -39,3 +24,31 @@ The `db` container has 3 volumes -
 2. `docker/mysqldumps/backup.sql.gz` - This is a snapshot taken from the production instance via mysqldump, place the file in this location and it will get imported on the first run of the container automatically.
 
 3. `docker/migrate/migrate.sql` - A domain migration script, this updates the domain name stored in the database, this also gets run automatically when the containers are spun up for the first time. You need to add your domain name in to the SQL queries currently.
+
+## Usage
+
+1. Create mysqldump from production site and place in `docker/mysqldumps/backup.sql.gz`
+
+2. Set your `WORDPRESS_TABLE_PREFIX` environment variable in `docker-compose.yml`. It defaults to `wp_` if not defined.
+
+3. Edit `migrate/migrate.sql` and change the table prefix in the queries to match your database. Also change `http://yourdomain.com` to be your production domain. This will get changed to be localhost instead.
+
+4. If you want to disable plugins, edit `migrate/migrate.sql` and add folder names to the `plugins` variable, otherwise skip this step.
+
+5. Navigate to the `docker` folder within the project and run:
+
+    `$ docker-compose up`
+
+The website will then be accessible in a browser at localhost.
+
+6. Run bash scripts in `setup` folder. To get in to the `wordpress` container shell to run the bash scripts, you can do the following:
+
+`$ docker exec -it docker_wordpress_1 bash` 
+
+If you want to disable plugins, run:
+
+`disable-plugins.sh`
+
+Then after run:
+
+`chown-wp-content.sh`

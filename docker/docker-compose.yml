@@ -9,7 +9,8 @@ services:
      image: wordpress:latest
      volumes:
        - ../site/wp-content:/var/www/html/wp-content
-       - ./setup:/usr/src/setup
+       - ./setup/chown-wp-content.sh:/usr/local/bin/chown-wp-content.sh
+       - ./setup/disable-plugins.sh:/usr/local/bin/disable-plugins.sh
      ports:
        - '80:80'
      restart: always
