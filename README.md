@@ -1,4 +1,4 @@
-# Development template - Docker/WordPress
+# Existing WordPress site development - Docker
 
 Quickly creates a development environment for an *existing* WordPress site. 
 
@@ -27,14 +27,12 @@ The `db` container has 3 volumes -
 
 ## Usage
 
-1. Clone this repository.
+1. Create a mysqldump from your production site and place in: `mysqldumps/backup.sql.gz` (ensure file is named `backup.sql.gz`)
 
-2. Create mysqldump from production site and place in: `mysqldumps/backup.sql.gz`
+2. Enter your configuration variables into `.env`. 
 
-3. Enter your configuration variables into `.env`. 
-
-4. Navigate to the root of this repository locally and run:
+3. Navigate to the root of this project locally and run:
 
     `docker-compose up -d && docker-compose run wordpress prep.sh`
 
-The website will then be available at `http://localhost`
+The website will then be available at `http://localhost` and the WordPress dashboard at `http://localhost/wp-admin`.
