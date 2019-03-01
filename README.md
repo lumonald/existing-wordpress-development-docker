@@ -1,6 +1,6 @@
 # Existing WordPress site development - Docker
 
-Quickly creates a development environment for an *existing* WordPress site. 
+Quickly creates a local development environment for an *existing* WordPress site. 
 
 This application requires Docker to be up and running and for docker compose to also be installed.
 
@@ -11,7 +11,7 @@ The `docker-compose.yml` file defines 2 containers -
 
 The `wordpress` container has 2 volumes - 
 
-1. The `site/wp-content` folder - Copy thw `wp-content` folder from the production site. It's used for all customisations outside of the core WordPress code. This includes the themes, plugins, uploads etc.
+1. The `site/wp-content` folder - Copy the `wp-content` folder from the production site. It's used for all customisations outside of the core WordPress code. This includes the themes, plugins, uploads etc.
 
 2. `init/prep.sh` - Disables plugins as defined in the `.env` file. It also makes the `wp-content` folder the same owner/group as the rest of the site.
 
@@ -26,12 +26,15 @@ The `db` container has 3 volumes -
 3. `init/migrate.sh` - A URL migration script, this updates the URL stored in the database, this also gets run automatically when the containers are spun up for the first time. 
 
 ## Usage
+1. Clone or download this project.
 
-1. Create a mysqldump from your production site and place in: `mysqldumps/backup.sql.gz` (ensure file is named `backup.sql.gz`)
+2. Create a mysqldump from your pre-existing site and place in location: `mysqldumps/backup.sql.gz` (ensure file is named `backup.sql.gz`)
 
-2. Enter your configuration variables into `.env`. 
+3. Obtain copy of `wp-content` folder from pre-existing site and place in location: `site/wp-content`
 
-3. Navigate to the root of this project locally and run:
+4. Enter your configuration variables into `.env`. 
+
+5. Navigate to the root of this project locally and run:
 
     `docker-compose up -d && docker-compose run wordpress prep.sh`
 
