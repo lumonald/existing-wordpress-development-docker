@@ -5,14 +5,12 @@
 ###########
 #
 # Description: 
-# - Disables plugins as defined in `plugins` variable, by renaming the folder.
+# - Disables plugins as defined in `$DISABLED_PLUGINS` variable, by renaming the folder.
 # - Changes owner and group of wp-content folder to match rest of site
 #
 
 wp_content_path="/var/www/html/wp-content"
 wp_plugin_path=$wp_content_path"/plugins"
-
-echo $wp_plugin_path
 
 # Attempt to disable plugins
 if [ -z "$DISABLED_PLUGINS" ]
