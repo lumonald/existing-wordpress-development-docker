@@ -36,6 +36,6 @@ The `db` container has 3 volumes -
 
 5. Navigate to the root of this project locally and run:
 
-    `docker-compose up -d && docker-compose run wordpress prep.sh`
+    `docker-compose up -d && docker-compose exec wordpress prep.sh`
 
 The website will then be available at `http://localhost` and the WordPress dashboard at `http://localhost/wp-admin`.
