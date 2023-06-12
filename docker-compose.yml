@@ -23,6 +23,7 @@ services:
 
    db:
      image: mysql:5.7
+     platform: linux/x86_64
      volumes:
        - ./database:/var/lib/mysql
        - ./mysqldumps/backup.sql.gz:/docker-entrypoint-initdb.d/backup.sql.gz
