@@ -1,5 +1,11 @@
 # Existing WordPress site development - Docker
 
+## Notice
+
+**Unfortunately I no longer have time to manage this project so it has been publicly archived.**
+
+-----------
+
 Quickly creates a local development environment for an *existing* WordPress site. 
 
 This application requires Docker to be up and running and for docker compose to also be installed.
